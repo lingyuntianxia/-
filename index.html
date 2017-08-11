@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>个人博客</title>
+		<link rel="stylesheet" href="./css/main.css"/>
+		<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+		<style>
+			#Blog{width:960px;margin:0 auto;height:auto;}
+			*{font-family:"微软雅黑";}
+			.Float{width:100%;height:300px;margin-top:6px;}
+			.F_left{width:60%;height:300px;float:left;background:red;}
+			.F_right{width:40%;height:300px;float:right;display:flex;justify-content:center;align-items:center;}
+			.F_right img{box-shadow:2px 2px 4px rgba(0,0,0,0.3);}
+			.f_left{width:80%;height:100%;float:left;}
+			.f_left img{width:100%;height:100%;}
+			.f_right{width:20%;height:100%;float:right;background:pink;}
+			.f_right img{width:94%;height:17%;margin:1px 2px ;border:2.5px solid rgba(0,0,0,0.1);}
+			.f_right .bg_kuang{border:2.5px solid rgba(0,0,0,1);}
+			.f_right img:hover{border:2.5px solid rgba(0,0,0,1);}
+			.Title_one{width:100%;height:290px;margin:30px 0px;}
+			.T_left{width:70%;height:100%;float:left;}
+			.T_right{width:30%;height:100%;float:right;}
+			.H1_title{line-height:30px;width:215px;height:30px;background:#4b5153;border-radius:3px;box-shadow:5px 3px 10px #756f71;margin-left:2px;text-align:center;}
+			.H1_content{width:100%;height:250px;margin-top:30px;}
+			.C_kuang{width:210px;height:225px;float:left;margin-right:14px;}
+			.C_kuang:hover{box-shadow:2px 2px 3px rgba(0,0,0,0.3);}
+			.C_kuang:last-of-type{margin:0;}
+			.C_kuang img{width:100%;height:130px;}
+			.C_kuang h4{line-height:30px;width:190px;height:30px;margin:0 auto;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+			.C_kuang p{width:190px;height:54px;margin:6px 10px;font-size:14px;color:#ccc;overflow:hidden;}
+			.T_right ul{margin-top:30px;}
+			.T_right ul li{line-height:31px;width:100%;height:31px;border-bottom:1px solid #ccc;}
+			.T_right ul li:hover{background:#6eb88c;color:#fff;}
+			.Title_two{width:100%;height:20px;}
+			.Two_left{width:calc(70% - 2px);border-left:2px solid blue;float:left;text-indent:20px;}
+			.Two_right{width:calc(30% - 2px);border-left:2px solid blue;float:left;text-indent:20px;}
+			.Title_left{width:70%;height:1530px;float:left;}
+			.Title_left li{width:640px;height:146px;padding:25px 0;background:#fff;margin-bottom:20px;}
+			.Title_left li:first-of-type{margin-top:20px;}
+			.Title_left li  a img{width:215px;height:100%;}
+			.Title_left li>div{width:400px;height:100%;float:right;}
+			.Title_left li>div h4{margin:10px 0px;}
+			.Time p{line-height:33px;height:100%;float:left;font-size:12px;}
+			.Time p:nth-of-type(1){width:78px;height:100%;font-size:16px;}
+			.Time img{display:inline-block;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;width:33px;height:33px;border-radius:50%;margin:0;padding:0;margin-right:8px;float:left;}
+			.Time span{font-size:10px;height:100%;}
+			.Ajax_name{display:inline-block;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;width:33px;}
+			.Time p:nth-of-type(2){width:216px;height:100%;}
+			.Time p:nth-of-type(3){width:100px;height:100%;}
+			
+
+			
+			.T_content{width:100%;height:60px;margin-top:4px;overflow:hidden;font-size:15px;text-indent:20px;}
+			.Title_right{width:30%;height:1530px;float:right;}
+			.T_some{position:relative;width:100%;height:80px;background:#ccc;margin-top:20px;display:flex;align-items:center;justify-content:center;}
+			.T_some input{position:absolute;left:0;top:0;right:0;bottom:0;margin:auto;border:none;width:240px;height:28px;border-radius:8px;}
+			.T_some_two{width:100%;height:160px;margin-top:20px;background:#fff;}
+			.T_some_two .T_block{line-height:48px;width:100px;height:48px;border-radius:8px;float:left;margin-left:25px;margin-top:20px;text-align:center;color:#fff;}
+			.T_some_two .T_block:nth-of-type(1){background:#666666;}
+			.T_some_two .T_block:nth-of-type(2){background:#00cccc;}
+			.T_some_two .T_block:nth-of-type(3){background:#cc9966;}
+			.T_some_two .T_block:nth-of-type(4){background:#6633cc;}
+			.T_block1{line-height:48px;width:100px;height:48px;border-radius:8px;background:rgba(0,0,0,0.1);display:inline-block;transition:1s;}
+			.T_block1:hover{transform:rotate(360deg);}
+			.T_some_three {width:100%;height:300px;background:#fff;margin-top:20px;}
+			.T_some_three .S_title{line-height:28px;width:100%;height:28px;border-left:2px solid blue;text-indent:12px;}
+			.T_some_three .S_ealim{width:80%;height:70%;margin:10% 8%;}
+			.T_some_three .S_ealim span{margin:14px;display:inline-block;}
+			.T_some_three  .S_ealim i{width:100px;height:30px;background:red;display:inline-block;position:relative;top:14px;}
+			.T_height{height:320px;background:#fff;margin-top:20px;position:relative;}
+			.T_kuang li{line-height:35px;width:96px;height:100%;float:left;text-align:center;}
+
+			.T_kuang{line-height:35px;width:100%;height:35px;border-bottom:1px solid #ccc;position:relative;}
+			.T_top{margin-top:16px;position:relative;}
+			.T_xian{width:96px;height:2px;background:red;position:absolute;top:77px;transition:0.6s;}
+			.T_Zkuang{width:100%;height:216px;overflow:hidden;position:relative;}
+			.T_Three{width:100%;height:216px;transition:0.6s;}
+			.T_Three li{/*display:flex;align-items:center;*/text-indent:30px;overflow:hidden;font-size:12px;}
+			.T_Three:nth-of-type(1){position:relative;top:0;left:0;}
+			.T_Three:nth-of-type(2){position:relative;top:-100%;left:100%;}
+			.T_Three:nth-of-type(3){position:relative;top:-200%;left:200%;}
+			.T_Three:nth-of-type(4){position:absolute;top:0;text-align:center;}
+			
+			.T_Three:nth-of-type(4) .query{line-height:20px;width:20px;height:20px;border-radius:2px;margin-left:1px;background:#979598;text-indent:0px;}
+			.T_kuang .query{position:absolute;top:8px;}
+			.T_kuang:nth-of-type(1) .query{background:#ff858e;}
+			.T_kuang:nth-of-type(2) .query{background:#77d549;}
+			.T_kuang:nth-of-type(3) .query{background:#62c1ff;}
+			.Ts_height{height:480px;background:#fff;box-shadow:1px 1px 2px rgba(0,0,0,0.4);}
+			.T_pl_kuang{position:relative;width:272px;height:432px;margin:0 auto;border:1px solid #ccc;margin-top:20px;border-radius:4px;overflow:hidden;}
+			.T_pl_kuang li{width:250px; height:60px;background:#F2F6FD;margin:0 auto;margin-top:10px;display:flex;align-items:center;}
+
+			.T_pl_kuang li img{width:34px;height:34px;border-radius:2px;margin: 0px 5px;padding:2px;float:left;}
+			.T_pl_kuang li p{width:174px;height:34px;overflow:hidden;float:left;font-size:12px;}
+
+			.Bt_tom{width:100%;position:relative;background:red;}
+			.Bt_left{width:45%;float:left;background:#fff;}
+			.Bt_right{width:45%;float:right;background:#fff;}
+			.Bt_web,.Bt_seo{line-height:30px;width:100%;height:30px;border-left:2px solid blue;font-size:20px;text-indent:6px;margin-bottom:16px;}
+
+			.Bt_right .Bt_Kuang,.Bt_left .Bt_Kuang{width:100%;height:36px;border-bottom:1px solid #ccc;}
+			
+			.Bt_Kuang i{position:relative;top:8px;left:1px;display:inline-block;text-align:center;width:20px;height:20px;background:#979598;}
+			.Bt_Kuang:nth-of-type(1) i{background:#ff858e;}
+			.Bt_Kuang:nth-of-type(2) i{background:#77d549;}
+			.Bt_Kuang:nth-of-type(3) i{background:#62c1ff;}
+
+			.Bt_Kuang span{position:relative;top:8px;width:380px;height:20px;margin-left:8px;font-size:16px;transition:.6s;text-indent:0px;display:inline-block;overflow:hidden;}
+			.Bt_Kuang:hover span{text-indent:20px;}
+
+
+
+			
+
+			.Js_kuang{position:absolute;top:-70px;left:11px;width:250px; height:60px;background:#F2F6FD;display:flex;align-items:center;}
+			.Js_img{width:34px;height:34px;border-radius:2px;margin: 0px 5px;padding:2px;float:left;}
+			.Js_P{width:180px;height:37px;overflow:hidden;float:left;font-size:12px;}
+		</style>
+
+
+
+
+	</head>
+	<body>
+		<div id="Blog" >
+			<div id="nav">
+				<h1>XX</h1>
+				<h3>--个人博客</h3>
+				<div class="font">
+					<p>不为自己的失败找借口</p>
+					<p>去想，去说，去做，它们的性质不一样，做了就是成功！</p>
+				</div>
+				<img src="http://file06.16sucai.com/2016/0405/c5d7fadbe2dc23022f9123f9f6fe1c7c.jpg"/>
+			</div>
+			<ul class="naw">
+				<li class="bk_color">首页</li>
+				<a href="index_Subpage.html"><li>文章推荐</li></a>
+				<li>首页</li>
+				<li>首页</li>
+				<li>首页</li>
+				<li>首页</li>
+			</ul>
+			<ul class="Float">
+				<li class="F_left">
+					<div class="f_left">
+						<img src="http://www.duanliang920.com/templets/my/images/banner/s-b3.jpg"/>
+					</div>
+					<div class="f_right">
+						<img class="bg_kuang" src="http://www.duanliang920.com/templets/my/images/banner/s-b3.jpg" />
+						<img src="http://pic.qiantucdn.com/58pic/11/31/58/97p58PICV26.jpg" />
+						<img src="http://imgsrc.baidu.com/image/c0%3Dshijue1%2C0%2C0%2C294%2C40/sign=8694cad471899e516c8332572aceb346/0eb30f2442a7d9337bfbfd5aa74bd11373f00143.jpg" />
+						<img src="http://imgsrc.baidu.com/image/c0%3Dshijue1%2C0%2C0%2C294%2C40/sign=30161d0030292df583cea456d4583615/e1fe9925bc315c609050b3c087b1cb13485477dc.jpg" />
+						<img src="http://imgsrc.baidu.com/imgad/pic/item/83025aafa40f4bfb281dbe70094f78f0f63618c0.jpg" />
+					</div>
+				</li>
+				<li class="F_right">
+					<img src="img/img.jpg"/>
+				</li>
+			</ul>
+			<ul class="Title_one">
+				<li class="T_left">
+					<div class="H1_title">个人博客模板 Blog Template</div>
+					<ul class="H1_content">
+						<li class="C_kuang">
+							<a class="Href_Photo"><img class="Ajax_Photo"  src="" alt=""/></a>
+							<a class="Href_Title"><h4 class="Ajax_Title"></h4></a>
+							<P class="Ajax_Content"></P>
+						</li>
+						<li class="C_kuang">
+							<a class="Href_Photo"><img  class="Ajax_Photo" src="" alt=""/></a>
+							<a class="Href_Title"><h4 class="Ajax_Title"></h4></a>
+							<P class="Ajax_Content"></P>
+						</li>
+						<li class="C_kuang">
+							<a class="Href_Photo"><img  class="Ajax_Photo" src="" alt=""/></a>
+							<a class="Href_Title"><h4 class="Ajax_Title"></h4></a>
+							<P class="Ajax_Content"></P>
+						</li>
+					</ul>
+				</li>
+				<li class="T_right">
+					<div class="H1_title">网页制作视频 Web Video</div>
+					<ul>
+						<li>第一课</li>
+						<li>第二课</li>
+						<li>第三课</li>
+						<li>第四课</li>
+						<li>第五课</li>
+						<li>第六课</li>
+						<li>第七课</li>
+					</ul>
+				</li>
+			</ul>
+			<ul class="Title_two">
+				<li class="Two_left" >文章推荐</li>
+				<li class="Two_right">站内搜索</li>
+			</ul>
+			<ul class="Title_left">
+				<li>
+					<a class="Href_img"><img class="Ajax_img" src="" alt=""/></a>
+					<div>
+						<a class="Href_title"><h4 class="Ajax_title"></h4></a>
+						<div class="Time" style="width:100%;height:33px">
+							<p>
+								<img  class="name Ajax_alt" src="" alt=""/>
+								<span class="Ajax_name"></span>
+							</p>
+							<P><span>发布时间：</span><em class="Ajax_time"></em></P>
+							<P><span>分类：</span><em>学海无涯</em></P>
+						</div>
+						<div class="T_content Ajax_content"></div>
+					</div>
+				</li>
+				<li>
+					<a class="Href_img"><img class="Ajax_img" src="" alt=""/></a>
+					<div>
+						<a class="Href_title"><h4 class="Ajax_title"></h4></a>
+						<div class="Time" style="width:100%;height:33px">
+							<p>
+								<img class="name Ajax_alt" src="" alt=""/>
+								<span class="Ajax_name"></span>
+							</p>
+							<P><span>发布时间：</span><em class="Ajax_time"></em></P>
+							<P><span>分类：</span><em>学海无涯</em></P>
+						</div>
+						<div class="T_content Ajax_content"></div>
+					</div>
+				</li>
+				<li>
+					<a class="Href_img"><img class="Ajax_img" src="" alt=""/></a>
+					<div>
+						<a class="Href_title"><h4 class="Ajax_title"></h4></a>
+						<div class="Time" style="width:100%;height:33px">
+							<p>
+								<img class="name Ajax_alt" src="" alt=""/>
+								<span class="Ajax_name"></span>
+							</p>
+							<P><span>发布时间：</span><em class="Ajax_time"></em></P>
+							<P><span>分类：</span><em>学海无涯</em></P>
+						</div>
+						<div class="T_content Ajax_content"></div>
+					</div>
+				</li>
+				<li>
+					<a class="Href_img"><img class="Ajax_img" src="" alt=""/></a>
+					<div>
+						<a class="Href_title"><h4 class="Ajax_title"></h4></a>
+						<div class="Time" style="width:100%;height:33px">
+							<p>
+								<img class="name Ajax_alt" src="" alt=""/>
+								<span class="Ajax_name"></span>
+							</p>
+							<P><span>发布时间：</span><em class="Ajax_time"></em></P>
+							<P><span>分类：</span><em>学海无涯</em></P>
+						</div>
+						<div class="T_content Ajax_content"></div>
+					</div>
+				</li>
+				<li>
+					<a class="Href_img"><img class="Ajax_img" src="" alt=""/></a>
+					<div>
+						<a class="Href_title"><h4 class="Ajax_title"></h4></a>
+						<div class="Time" style="width:100%;height:33px">
+							<p>
+								<img class="name Ajax_alt" src="" alt="段亮"/>
+								<span class="Ajax_name"></span>
+							</p>
+							<P><span>发布时间：</span><em class="Ajax_time"></em></P>
+							<P><span>分类：</span><em>学海无涯</em></P>
+						</div>
+						<div class="T_content Ajax_content"></div>
+					</div>
+				</li>
+				<li>
+					<a class="Href_img"><img class="Ajax_img" src="" alt=""/></a>
+					<div>
+						<a class="Href_title"><h4 class="Ajax_title"></h4></a>
+						<div class="Time" style="width:100%;height:33px">
+							<p>
+								<img class="name Ajax_alt" src="" alt="段亮"/>
+								<span class="Ajax_name"></span>
+							</p>
+							<P><span>发布时间：</span><em class="Ajax_time"></em></P>
+							<P><span>分类：</span><em >学海无涯</em></P>
+						</div>
+						<div class="T_content Ajax_content"></div>
+					</div>
+				</li>
+				<li>
+					<a class="Href_img"><img class="Ajax_img" src="" alt=""/></a>
+					<div>
+						<a class="Href_title"><h4 class="Ajax_title"></h4></a>
+						<div class="Time" style="width:100%;height:33px">
+							<p>
+								<img class="name Ajax_alt" src="" alt=""/>
+								<span class="Ajax_name"></span>
+							</p>
+							<P><span>发布时间：</span><em class="Ajax_time"></em></P>
+							<P><span>分类：</span><em>学海无涯</em></P>
+						</div>
+						<div class="T_content Ajax_content"></div>
+					</div>
+				</li>
+			</ul>
+			<ul class="Title_right">
+				<li class="T_some">
+					<input type="text"/>
+				</li>
+				<li class="T_some_two">
+					<div class="T_block"><span class="T_block1">关于我</span></div>
+					<div class="T_block"><span class="T_block1">视频教程</span></div>
+					<div class="T_block"><span class="T_block1">SEO优化</span></div>
+					<div class="T_block"><span class="T_block1">留言板</span></div>
+				</li>
+				<li class="T_some_three">
+					<div class="S_title">关注博客</div>
+					<div class="S_ealim">
+						<span>邮箱订阅：</span><i></i><br/>
+						<span>联系姓名：</span><i></i><br/>
+						<span>加入群聊：</span><i></i><br/>
+						<span>关注微博：</span><i></i><br/>
+					</div>
+				</li>
+				<li class="T_some_three T_height">
+					<div class="S_title">热门推荐</div>
+					<ul class="T_kuang T_top">
+						<li>点击排行</li>
+						<li>建站知识</li>
+						<li>织梦后台</li>
+					</ul>
+					<div class="T_xian"></div>
+					<div class="T_Zkuang">
+						<ul class="T_Three">
+							<li class="T_kuang"><a></a></li>
+							<li class="T_kuang"><a></a></li>
+							<li class="T_kuang"><a></a></li>
+							<li class="T_kuang"><a></a></li>
+							<li class="T_kuang"><a></a></li>
+							<li class="T_kuang"><a></a></li>
+						</ul>
+						<ul class="T_Three">
+							<li class="T_kuang"><a></a></li>
+							<li class="T_kuang"><a></a></li>
+							<li class="T_kuang"><a></a></li>
+							<li class="T_kuang"><a></a></li>
+							<li class="T_kuang"><a></a></li>
+							<li class="T_kuang"><a></a></li>
+						</ul>
+						<ul class="T_Three">
+							<li class="T_kuang"><a></a></li>
+							<li class="T_kuang"><a></a></li>
+							<li class="T_kuang"><a></a></li>
+							<li class="T_kuang"><a></a></li>
+							<li class="T_kuang"><a></a></li>
+							<li class="T_kuang"><a></a></li>
+						</ul>
+						<ul class="T_Three">
+							<li class="T_kuang">
+								<div class="query">1</div>
+							</li>
+							<li class="T_kuang">
+								<div class="query">2</div>
+							</li>
+							<li class="T_kuang">
+								<div class="query">3</div>
+							</li>
+							<li class="T_kuang">
+								<div class="query">4</div>
+							</li>
+							<li class="T_kuang">
+								<div class="query">5</div>
+							</li>
+							<li class="T_kuang">
+								<div class="query">6</div>
+							</li>
+						</ul>
+					</div>
+				</li>
+				<li class="T_some_three Ts_height" >
+					<div class="S_title">最新评论</div>
+					<ul class="T_pl_kuang">
+						<li>
+							<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1502252275970&di=5d1ec778efd905941fdbe32b852b044f&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimage%2Fc0%253Dshijue1%252C0%252C0%252C294%252C40%2Fsign%3Db9700de5c9cec3fd9f33af36bee1be4a%2Ffd039245d688d43f87f661db771ed21b0ef43bbf.jpg" alt=""/>
+							
+								<p>不为自己的失败找借口去想，去说，去做，它们的性质不一样，做了就是成功！</p>
+							
+						</li>
+						<li>
+							<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1502252275970&di=5d1ec778efd905941fdbe32b852b044f&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimage%2Fc0%253Dshijue1%252C0%252C0%252C294%252C40%2Fsign%3Db9700de5c9cec3fd9f33af36bee1be4a%2Ffd039245d688d43f87f661db771ed21b0ef43bbf.jpg" alt=""/>
+							
+								<p>不为自己的失败找借口去想，去说，去做，它们的性质不一样，做了就是成功！</p>
+							
+						</li>
+						<li>
+							<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1502252275970&di=5d1ec778efd905941fdbe32b852b044f&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimage%2Fc0%253Dshijue1%252C0%252C0%252C294%252C40%2Fsign%3Db9700de5c9cec3fd9f33af36bee1be4a%2Ffd039245d688d43f87f661db771ed21b0ef43bbf.jpg" alt=""/>
+							
+								<p>不为自己的失败找借口去想，去说，去做，它们的性质不一样，做了就是成功！</p>
+							
+						</li>
+						<li>
+							<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1502252275970&di=5d1ec778efd905941fdbe32b852b044f&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimage%2Fc0%253Dshijue1%252C0%252C0%252C294%252C40%2Fsign%3Db9700de5c9cec3fd9f33af36bee1be4a%2Ffd039245d688d43f87f661db771ed21b0ef43bbf.jpg" alt=""/>
+							
+								<p>不为自己的失败找借口去想，去说，去做，它们的性质不一样，做了就是成功！</p>
+							
+						</li>
+						<li>
+							<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1502252275970&di=5d1ec778efd905941fdbe32b852b044f&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimage%2Fc0%253Dshijue1%252C0%252C0%252C294%252C40%2Fsign%3Db9700de5c9cec3fd9f33af36bee1be4a%2Ffd039245d688d43f87f661db771ed21b0ef43bbf.jpg" alt=""/>
+							
+								<p>不为自己的失败找借口去想，去说，去做，它们的性质不一样，做了就是成功！</p>
+							
+						</li>
+						<li>
+							<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1502252275970&di=5d1ec778efd905941fdbe32b852b044f&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimage%2Fc0%253Dshijue1%252C0%252C0%252C294%252C40%2Fsign%3Db9700de5c9cec3fd9f33af36bee1be4a%2Ffd039245d688d43f87f661db771ed21b0ef43bbf.jpg" alt=""/>
+							<p>不为自己的失败找借口去想，去说，去做，它们的性质不一样，做了就是成功！</p>
+						</li>
+					</ul>
+				</li>
+			</ul>
+			<ul class="Bt_tom" >
+				<li class="Bt_left">
+					<div class="Bt_web">Web前端</div>
+					<ul >
+						<li class="Bt_Kuang">
+							<i>1</i><span>eqw</span>
+						</li>
+						<li class="Bt_Kuang">
+							<i>2</i><span>qwewq</span>
+						</li>
+						<li class="Bt_Kuang">
+							<i>3</i><span>rqw</span>
+						</li>
+						<li class="Bt_Kuang">
+							<i>4</i><span>qwr</span>
+						</li>
+						<li class="Bt_Kuang">
+							<i>5</i><span>fds</span>
+						</li>
+						<li class="Bt_Kuang">
+							<i>6</i><span>sdf</span>
+						</li>
+					</ul>
+				</li>
+				<li class="Bt_right">
+					<div class="Bt_seo">Seo优化</div>
+					<ul >
+						<li class="Bt_Kuang">
+							<i>1</i>
+							<span>eqw</span>
+						</li>
+						<li class="Bt_Kuang">
+							<i>2</i>
+							<span>qwewq</span>
+						</li>
+						<li class="Bt_Kuang">
+							<i>3</i>
+							<span>rqw</span>
+						</li>
+						<li class="Bt_Kuang">
+							<i>4</i>
+							<span>qwr</span>
+						</li>
+						<li class="Bt_Kuang">
+							<i>5</i>
+							<span>fds</span>
+						</li>
+						<li class="Bt_Kuang">
+							<i>6</i>
+							<span>sdf</span>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+			
+	
+
+	<script>
+		$(document).ready(function(){
+
+			var $_ol_img=$(".f_left").find("img");
+			var $_or_img=$(".f_right").find('img');
+				$_or_img.mouseover(function(index){
+					$_or_img.removeClass('bg_kuang');
+					$(this).addClass('bg_kuang');
+					$_ol_img.attr('src',$(this).attr('src'))
+				});
+
+			var $_aT_li=$('.T_top').find('li');
+			var $_oT_xian=$('.T_xian');
+			var $_aT_Three=$('.T_Three');
+			$_aT_li.click(function(ev){
+				var oT_width=$(this).width();
+				$_oT_xian.width('OT_width');
+				$_oT_xian.css('left',96*$(this).index());
+				
+			})
+			$_aT_li.click(function(){
+				var $_aT_width=$_aT_Three.width();
+				var $_aT_width1=$_aT_width*$(this).index();
+				$_aT_Three.each(function(){
+					var ii=[1,2,3,1];
+					var $_Left=$_aT_width*ii[$(this).index()]-$_aT_width-$_aT_width1;
+					$(this).css('left',$_Left);
+				})
+			})	
+		})
+
+
+			
+				
+					
+			
+				
+							
+					
+						
+
+		
+
+	
+		
+		var arr=[];
+		var a=0;
+			
+		setInterval(function(){
+			var oT_pl_kuang=document.querySelector(".T_pl_kuang");
+			var aHli=oT_pl_kuang.querySelectorAll("li");
+			for(var i=0;i<aHli.length;i++){
+				aHli[i].style.top=parseInt(getStyle(aHli[i]))+70+'px';
+			}
+			var oLi=document.createElement("li");
+				oLi.className="Js_kuang";
+			var oImg=document.createElement("img");
+				oImg.src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1502252275970&di=5d1ec778efd905941fdbe32b852b044f&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimage%2Fc0%253Dshijue1%252C0%252C0%252C294%252C40%2Fsign%3Db9700de5c9cec3fd9f33af36bee1be4a%2Ffd039245d688d43f87f661db771ed21b0ef43bbf.jpg";
+				oImg.className="Js_img";
+
+				oLi.appendChild(oImg);
+
+			var oP=document.createElement('P');
+					if(a>19){
+						a=0;
+					}
+					oP.className="Js_P";
+					oP.innerText=arr[a++];
+					oLi.appendChild(oP);
+			oLi.style.top=parseInt(getStyle(oLi))+70+"px";
+			oT_pl_kuang.appendChild(oLi);
+			
+		},10000);
+		
+		var aT_Three=document.querySelectorAll(".T_Three");
+	
+		
+		//图片及文章的自生成
+			var getContent=null;
+			function getStyle(obj){
+				return obj.currentStyle?obj.currentStyle.top:getComputedStyle(obj).top;
+			}
+			$.ajax({
+				url:'http://jsonp.smallfox.cc/module/article/type.php',
+				type:'get',
+				data:{
+					pt:'jsonp',
+					ajax:'yes',
+					tid:'2',
+					page:'1',
+				},
+				callback:'callback',
+				dataType:'jsonp',
+				success:function(data){
+					// var $_aHref_img=$('.Href_img');
+					// var $_aHref_title=$('.Href_title');
+
+					var aHref_img=document.querySelectorAll('.Href_img');
+					var aHref_title=document.querySelectorAll('.Href_title');
+
+					// var $_aAjax_title=$('.Ajax_title');
+					// var $_aAjax_content=$('.Ajax_content');
+					// var $_aAjax_name=$('.Ajax_name');
+					// var $_aAjax_time=$('.Ajax_time');
+					// var $_aAjax_alt=$('.Ajax_alt');
+
+					var aAjax_title=document.querySelectorAll('.Ajax_title');
+					var aAjax_content=document.querySelectorAll('.Ajax_content');
+					var aAjax_name=document.querySelectorAll('.Ajax_name');
+					var aAjax_time=document.querySelectorAll('.Ajax_time');
+					var aAjax_alt=document.querySelectorAll('.Ajax_alt');
+
+					// var $_aAjax_Title=$('.Ajax_Title');
+					// var $_aAjax_Content=$('.Ajax_Content');
+
+					var aAjax_Title=document.querySelectorAll('.Ajax_Title');
+					var aAjax_Content=document.querySelectorAll('.Ajax_Content');
+
+					var aHref_Photo=document.querySelectorAll('.Href_Photo');
+					var aHref_Title=document.querySelectorAll('.Href_Title');
+
+
+					
+					for(var i=0;i<data.data.length;i++){
+						arr.push(data.data[i].j_jianjie.replace(/(^\s+)|(\s+$)/g,''));
+					}
+					for(var i=0;i<7;i++){
+						aAjax_title[i].innerText=data.data[i].j_name;
+						aAjax_content[i].innerHTML=data.data[i].j_jianjie.replace(/(^\s+)|(\s+$)/g,'');
+						aAjax_name[i].innerText=data.data[i].j_zuozhe;
+						aAjax_time[i].innerText=data.data[i].j_time;
+						aAjax_alt[i].alt=data.data[i].j_zuozhe;
+						aHref_img[i].href="index_fh.html?tid="+data.data[i].j_tid+"&cid="+data.data[i].j_cid+"";
+						aHref_title[i].href="index_fh.html?tid="+data.data[i].j_tid+"&cid="+data.data[i].j_cid+"";
+					}
+					for(var i=0;i<3;i++){
+						console.log(data.data[i+7])
+						aAjax_Title[i].innerText=data.data[i+7].j_name;
+						aAjax_Content[i].innerHTML=data.data[i+7].j_jianjie.replace(/(^\s+)|(\s+$)/g,'');
+						aHref_Photo[i].href="index_fh.html?tid="+data.data[i+7].j_tid+"&cid="+data.data[i+7].j_cid+"";
+						aHref_Title[i].href="index_fh.html?tid="+data.data[i+7].j_tid+"&cid="+data.data[i+7].j_cid+"";
+					} 
+				}
+					
+
+					
+
+			});	
+			$.ajax({
+				url:'http://jsonp.smallfox.cc/module/article/type.php',
+				type:'get',
+				data:{
+					pt:'jsonp',
+					ajax:'yes',
+					tid:'2',
+					page:'2',
+				},
+				callback:'callback',
+				dataType:'jsonp',
+				success:function(data){
+					var aT_kuang=aT_Three[0].querySelectorAll('.T_kuang');
+					var aT_kuang1=aT_Three[1].querySelectorAll('.T_kuang');
+					var aT_kuang2=aT_Three[2].querySelectorAll('.T_kuang');
+					for(var i=0;i<6;i++){
+						aT_kuang[i].innerHTML=data.data[i].j_jianjie.replace(/(^\s+)|(\s+$)/g,'');
+						aT_kuang1[i].innerHTML=data.data[i+6].j_jianjie.replace(/(^\s+)|(\s+$)/g,'');
+						aT_kuang2[i].innerHTML=data.data[i+12].j_jianjie.replace(/(^\s+)|(\s+$)/g,'');
+					}
+				}
+			});
+			$.ajax({
+				url:'http://jsonp.smallfox.cc/module/article/type.php',
+				type:'get',
+				data:{
+					pt:'jsonp',
+					ajax:'yes',
+					tid:'2',
+					page:'3',
+				},
+				callback:'callback',
+				dataType:'jsonp',
+				success:function(data){
+					var oBt_tom=document.querySelector('.Bt_tom');
+					var aB_span=oBt_tom.querySelectorAll('span');
+					for(var i=0;i<6;i++){
+						aB_span[i].innerHTML=data.data[i].j_jianjie.replace(/(^\s+)|(\s+$)/g,'');
+						aB_span[i+6].innerHTML=data.data[i+6].j_jianjie.replace(/(^\s+)|(\s+$)/g,'');
+					}
+				}
+			});
+						
+
+
+						
+			// 360图片API
+			$.ajax({
+				url:'http://image.so.com/j',
+				type:'get',
+				data:{
+					src:'360pic_strong',
+					z:'2',
+					cmg:'2f52849d495bb60742a8b46444e77bf8',
+					q:'图书',
+					correct:'图书',
+					sn:'0',
+					pn:'40',
+					sid:'553ab22c6a3cd0840c0785f3e3b7d582',
+					ran:'0',
+				},
+				callback:'callback',
+				dataType:'jsonp',
+				success:function(data){
+					var aAjax_img=document.querySelectorAll('.Ajax_img');
+					var aAjax_photo=document.querySelectorAll('.Ajax_Photo');
+					var brr=[];
+					for(var i=0;i<data.list.length;i++){
+						if(data.list[i].thumbWidth>data.list[i].thumbHeight){
+							brr.push(data.list[i].thumb)
+						}
+					}
+					for(var i=0;i<7;i++){
+						aAjax_img[i].src=brr[i];
+						aAjax_img[i].alt="无图片";
+					}
+					for(var i=0;i<3;i++){
+						aAjax_photo[i].src=brr[i+8];
+					}
+				}
+			});		
+
+				
+
+
+
+					
+					
+				
+				
+		</script>
+	
+				
+				
+
+		
+	</body>
+</html>

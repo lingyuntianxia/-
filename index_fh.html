@@ -1,0 +1,78 @@
+﻿<DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<link rel="stylesheet" href="./css/main.css"/>
+		<title>文章</title>
+		<style>
+			body{}
+			*{font-family:"微软雅黑";}
+			#HOme{width:960px;margin:0 auto;}
+			h2{text-align:center;}
+			.dingwei{width:100%;height:30px;}
+			.dingwei i{width:20px;height:30px;display:inline-block;vertical-align:middle;}
+			.dingwei span{display:inline-block;vertical-align:middle;}
+		</style>
+	</head>
+	<body>
+		<div id="HOme">
+			<div id="nav">
+				<h1>XX</h1>
+				<h3 class="">--个人博客</h3>
+				<div class="font">
+					<p>不为自己的失败找借口</p>
+					<p>去想，去说，去做，它们的性质不一样，做了就是成功！</p>
+				</div>
+				<img src="http://file06.16sucai.com/2016/0405/c5d7fadbe2dc23022f9123f9f6fe1c7c.jpg"/>
+			</div>
+			<ul class="naw">
+				<a href="index.html"><li>首页</li></a>
+				<li class="bk_color">文章推荐</li>
+				<li>首页</li>
+				<li>首页</li>
+				<li>首页</li>
+				<li>首页</li>
+			</ul>
+			<div class="dingwei">
+				<i></i>
+				<span>首页>文章推荐</span>
+			</div>
+			<h2></h2>
+			<div class="cahru"></div>
+		</div>
+		<!-- <iframe id="myframe" src="index.html"></iframe> -->
+		<script>
+			function fn2(data){
+				var oH1=document.querySelector('h2');
+				oH1.innerHTML=data.data.wname;
+				document.getElementsByClassName('cahru')[0].innerHTML=data.data.wjianjie;
+			}
+
+			function getParam(id,_url){
+				var url =_url||window.document.location.href;
+					
+				// var url=url.toString();
+				 var u = url.split("?");
+				
+				 var get = {};
+				 if(typeof(u[1])=="string"){
+				 	u=u[1].split('&');
+				 	for(i in u){
+				 		var j = u[i].split("=");
+				 		get[j[0]]=j[1];
+				 	}
+				 }
+				 else{
+				 	return;
+				 }	
+				return get[id];
+			}
+			var tid=getParam('tid');
+			var cid=getParam('cid');
+			var oScript=document.createElement('script');
+			oScript.src="http://jsonp.smallfox.cc/module/article/article.php?tid="+tid+"&aid="+cid+"&pt=jsonp&ajax=yes&callback=fn2";
+			document.body.appendChild(oScript);
+		</script>
+	</body>
+</html>
+
