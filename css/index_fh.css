@@ -1,0 +1,9 @@
+
+
+
+			*{font-family:"微软雅黑";}
+			#HOme{width:960px;margin:0 auto;}
+			h2{text-align:center;}
+			.dingwei{width:100%;height:30px;margin-top:20px;}
+			.dingwei i{width:20px;height:30px;display:inline-block;vertical-align:middle;}
+			.dingwei span{display:inline-block;vertical-align:middle;}
